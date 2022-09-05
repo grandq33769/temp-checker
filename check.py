@@ -15,6 +15,8 @@ WAIT_TIME = 3
 OPTIONS = Options()
 OPTIONS.add_argument('--headless')  # 啟動 Headless 無頭
 OPTIONS.add_argument('--disable-gpu')  # 關閉GPU 避免某些系統或是網頁出錯
+OPTIONS.add_argument('--disable-dev-shm-usage')
+OPTIONS.add_argument('--no-sandbox')
 OPTIONS.add_argument("window-size=1400,800")
 
 
@@ -71,7 +73,7 @@ def checkin(no, password):
 
     time.sleep(WAIT_TIME)
     driver.save_screenshot("screenshot.png")
-    driver.close()
+    driver.quit()
 
 
 if __name__ == "__main__":
