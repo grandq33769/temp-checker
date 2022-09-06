@@ -81,4 +81,12 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--path", help="credential path")
     args = parser.parse_args()
     no, password = get_credentials(args.path)
-    checkin(no, password)
+    success, retry = False, 0
+    while not success and retry < 3:
+        try:
+            checkin(no, password)
+            success = True
+        except Exception as e:
+            logger.exception(e)
+            retry += 1
+
